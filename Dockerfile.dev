@@ -1,0 +1,16 @@
+FROM php:7.4-alpine
+
+RUN apk --update add && \
+    apk add \
+        bash \
+        curl \
+        npm \
+        yarn
+
+RUN curl -sS https://getcomposer.org/installer | php && \
+    mv ./composer.phar /usr/local/bin/composer && \
+    composer config -g repos.packagist composer https://packagist.jp
+
+WORKDIR /var/www/html
+
+# docker-compose up -d --force-recreate --build

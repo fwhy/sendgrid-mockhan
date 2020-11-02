@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: sm-php
+    container_name: sm-php
+    environment:
+      TZ: Asia/Tokyo
+    ports:
+      - 5656:5656
+    volumes:
+      - ./html:/var/www/html
+    command: 'php -S 0.0.0.0:5656 -t public'

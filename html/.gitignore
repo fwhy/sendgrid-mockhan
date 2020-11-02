@@ -1,0 +1,14 @@
+/vendor
+/.idea
+Homestead.json
+Homestead.yaml
+.env
+.phpunit.result.cache
+_ide_helper_models.php
+/database/database.sqlite
+/node_modules
+/public/js
+/public/css
+/public/fonts
+/public/images
+/public/mix-manifest.json
