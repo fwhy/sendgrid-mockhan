@@ -50,22 +50,31 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        $parentRender = parent::render($request, $exception);
-
         if ($request->url() !== route('mail_api')) {
-            return $parentRender;
+            return parent::render($request, $exception);
         }
 
         $body = [
             'errors' => [
                 [
-                    'message' => $exception instanceof HttpException ? $exception->getMessage() : 'Server Error',
+                    'message' => 'Server Error',
                     'failed' => null,
                     'help' => null,
                 ]
             ]
         ];
 
-        return new JsonResponse($body, $parentRender->status());
+        $status = 500;
+
+        if ($exception instanceof ValidationException) {
+            $status = 400;
+            $key = $exception->validator->errors()->keys()[0];
+            $body['errors'][0]['failed'] = $key;
+            $body['errors'][0]['message'] = $exception->validator->errors()->first($key);
+        } elseif (method_exists($exception, 'getStatusCode')) {
+            $status = $exception->getStatusCode();
+        }
+
+        return new JsonResponse($body, $status);
     }
 }

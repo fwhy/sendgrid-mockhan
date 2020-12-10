@@ -17,6 +17,8 @@ trait ValidationTrait
             'personalizations.*.to' => ['required', 'array', 'min:1'],
             'personalizations.*.to.*.email' => ['string'],
             'personalizations.*.to.*.name' => ['nullable', 'string'],
+
+            'subject' => ['required'],
         ];
     }
 
@@ -25,6 +27,8 @@ trait ValidationTrait
         return [
             'personalizations.min' => 'You must have at least one personalization.',
             'personalizations.max' => 'The personalization block is limited to 1000 personalizations per API request. You have provided X personalizations. Please consider splitting this into multiple requests and resending your request.',
+
+            'subject.required' => 'The subject of your email must be a string at least one character in length.',
         ];
     }
 

@@ -60,7 +60,7 @@
                 {{-- Subject --}}
                 <dt class="m-2">Subject</dt>
                 <dd class="m-2 pl-5">
-                    {{ $mail->subject }}
+                    {{ $personalization->subject ?: $mail->subject }}
                 </dd>
                 <hr>
                 {{-- Content --}}

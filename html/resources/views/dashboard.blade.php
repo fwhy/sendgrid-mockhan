@@ -34,7 +34,7 @@
                             </td>
                             <td class="p-0">
                                 <a href="/{{ $personalization->id }}" class="d-block p-2 fg-dark">
-                                    <span>{{ \Illuminate\Support\Str::limit($mail->subject, 50) }}</span>
+                                    <span>{{ \Illuminate\Support\Str::limit($personalization->subject ?: $mail->subject, 50) }}</span>
                                     <span class="fg-grayBlue">
                                         -- {{ \Illuminate\Support\Str::limit(explode(PHP_EOL, strip_tags($mail->content[0]->formattedValue($personalization->substitutions)))[0], 50) }}
                                     </span>
