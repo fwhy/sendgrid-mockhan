@@ -9,7 +9,7 @@ RUN apk --update add && \
 
 RUN curl -sS https://getcomposer.org/installer | php && \
     mv ./composer.phar /usr/local/bin/composer && \
-    composer config -g repos.packagist composer https://packagist.jp
+    composer config -g repos.packagist composer https://packagist.tokyo
 
 WORKDIR /var/www/html
 
